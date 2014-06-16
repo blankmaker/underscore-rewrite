@@ -118,7 +118,7 @@ var _ = {};
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
     var result = [];
-    _.each(collection, function(item, index) {
+    _.each(collection, function(item) {
       result.push(iterator(item));
     })
     return result;
@@ -148,6 +148,9 @@ var _ = {};
   // Calls the method named by methodName on each value in the list.
   // Note: you will nead to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    return _.map(collection, function(item) {
+      return typeof functionOrKey === "string" ? item[functionOrKey].apply(item) : functionOrKey.apply(item);
+    });
   };
 
   // Reduces an array or object to a single value by repetitively calling
