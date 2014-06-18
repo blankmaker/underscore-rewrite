@@ -194,6 +194,7 @@ var _ = {};
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
+    //iterator = iterator || function(item) {return item === true;};
     
     // TIP: There's a very clever way to re-use every() here.
   };
@@ -218,11 +219,23 @@ var _ = {};
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    _.each(arguments, function(item) {
+      for (var key in item) {
+        obj[key] = item[key];
+    }
+  });
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(arguments, function(item) {
+          for (var key in item) {
+            obj[key] = obj[key] === undefined ? item[key] : obj[key];
+          }
+      });
+      return obj;
   };
 
 
