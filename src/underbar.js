@@ -312,6 +312,8 @@ var _ = {};
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var copyOfArray = array.slice(0,array.length);
+    return copyOfArray.sort();
   };
 
 
