@@ -197,6 +197,11 @@ var _ = {};
     //iterator = iterator || function(item) {return item === true;};
     
     // TIP: There's a very clever way to re-use every() here.
+
+    var iterator = iterator || function (val) {return val}
+    return !(_.every(collection, function(val) {
+      return !iterator(val);
+    }, true));
   };
 
 
